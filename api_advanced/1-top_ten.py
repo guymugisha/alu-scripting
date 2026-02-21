@@ -5,7 +5,7 @@ import requests
 
 def top_ten(subreddit):
     """Queries Reddit API and prints titles of first 10 hot posts."""
-    url = "https://www.reddit.com/r/{}/ho.json".format(subreddit)
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {"User-Agent": "Mozilla/5.0"}
     params = {"limit": 10}
 
