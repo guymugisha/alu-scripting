@@ -27,5 +27,3 @@ def top_ten(subreddit):
         title = post.get("data", {}).get("title")
         if title:
             print(title)
-
-top_ten("programming")
