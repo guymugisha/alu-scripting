@@ -1,29 +1,17 @@
 #!/usr/bin/python3
-"""Queries the Reddit API and returns the number of subscribers."""
+"""Return the number of subscribers of a given subreddit"""
 
 import requests
 
+
 def number_of_subscribers(subreddit):
-    """Returns total subscribers of a subreddit."""
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {"User-Agent": "my-reddit-script/1.0"}
+    """function that fetches number_of_subscribers"""
+    URL = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    HEADERS = {"User-Agent": "PostmanRuntime/7.35.0"}
 
     try:
-        response = requests.get(
-            url,
-            headers=headers,
-            allow_redirects=False,
-            timeout=5
-        )
-
-        if response.status_code != 200:
-            return 0
-
-        data = response.json()
-
-        subs = data.get("data", {}).get("subscribers")
-
-        return subs
+        RESPONSE = requests.get(URL, headers=HEADERS, allow_redirects=False)
+        return RESPONSE.json().get("data").get("subscribers")
 
     except Exception:
         return 0
