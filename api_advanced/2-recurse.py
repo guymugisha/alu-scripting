@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Python API Advanced using Reddit API
-"""
+"""Python API Advanced using Reddit API."""
 
 import requests
 
