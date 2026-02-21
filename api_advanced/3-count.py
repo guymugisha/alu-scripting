@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This recursive function that queries the Reddit API."""
+"""Return the number of subscribers of a given subreddit"""
 
 import requests
 

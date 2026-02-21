@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Python API Advanced using Reddit API."""
+"""Return the number of subscribers of a given subreddit"""
 
 import requests
 

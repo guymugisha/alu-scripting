@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""function that queries the Reddit API and prints titles."""
+"""Return the number of subscribers of a given subreddit"""
 
 import requests
 
