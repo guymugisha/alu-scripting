@@ -1,35 +1,23 @@
 #!/usr/bin/python3
-"""Return the number of subscribers of a given subreddit"""
+"""fetches the title of all hot posts for a given subreddit recursively"""
 
 import requests
 
-def recurse(subreddit, hot_list=[], after=None):
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    headers = {"User-Agent": "my-reddit-script/1.0"}
-    params = {"after": after} if after else {}
 
-    response = requests.get(
-        url,
-        headers=headers,
-        params=params,
-        allow_redirects=False,
-        timeout=5
-    )
+def recurse(subreddit, hot_list=[], after=""):
+    """Main function"""
+    URL = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
 
-    if response.status_code != 200:
-        return None
-
-    data = response.json().get("data", {})
-    children = data.get("children", [])
-
-    for child in children:
-        post_title = child.get("data", {}).get("title", "")
-        if post_title:
-            hot_list.append(post_title)
-
-    after = data.get("after")
-
-    if after is None:
+    HEADERS = {"User-Agent": "PostmanRuntime/7.35.0"}
+    PARAMS = {"after": after, "limit": 100}
+    try:
+        RESPONSE = requests.get(URL, headers=HEADERS, params=PARAMS,
+                                allow_redirects=False)
+        after = RESPONSE.json().get("data").get("after")
+        HOT_POSTS = RESPONSE.json().get("data").get("children")
+        [hot_list.append(post.get('data').get('title')) for post in HOT_POSTS]
+        if after is not None:
+            return recurse(subreddit, hot_list, after)
         return hot_list
-
-    return recurse(subreddit, hot_list, after)
+    except Exception:
+        return None
