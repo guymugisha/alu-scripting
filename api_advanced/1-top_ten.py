@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# Author: Guy De Jesus
 """Prints the titles of the first 10 hot posts listed for a given subreddit."""
 import requests
 
@@ -6,7 +7,7 @@ import requests
 def top_ten(subreddit):
     """Queries Reddit API and prints titles of first 10 hot posts."""
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-    headers = {"User-Agent": "Mozila/5.0"}
+    headers = {"User-Agent": "GuyDeJesus-Reddit-Script/1.0"}
     params = {"limit": 10}
 
     response = requests.get(

@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# Author: Guy De Jesus
 """fetches the title of all hot posts for a given subreddit recursively"""
 
 import requests
@@ -8,7 +9,7 @@ def count_words(subreddit, word_list=[], hot_list=[], after=""):
     """Main function"""
     URL = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
 
-    HEADERS = {"User-Agent": "PostmanRuntime/7.35.0"}
+    HEADERS = {"User-Agent": "GuyDeJesus-Reddit-Script/1.0"}
     PARAMS = {"after": after, "limit": 100}
     try:
         RESPONSE = requests.get(URL, headers=HEADERS, params=PARAMS,
